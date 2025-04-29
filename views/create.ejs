@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Posts</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Create a new post</h1>
+        <form action="/create" method="POST">
+            <input type="text" name="title" placeholder="Post title goes in here..." required><br><br>
+            <textarea name="content" placeholder="What is your post all about?" rows="3" required></textarea><br><br>
+            <button type="submit" value="Post" class="btn">Post</button><br><br>
+        </form>
+        <a href="/" class="btn-small">See all posts</a>
+    </div>
+</body>
+</html>
