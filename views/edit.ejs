@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <title>Edit Post</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Edit Post</h2>
-        <form action="/edit/<%= post.id %>" method="POST">
-            <input type="text" name="title" value="<%= post.title %>" required><br><br>
-            <textarea name="content" rows="5" required><%= post.content %></textarea><br><br>
-            <button type="submit" class="btn">Save Changes</button>
-        </form>
-        <a href="/" class="btn-small">Back to Home</a>
+    <%- include("partials/header.ejs") %>
+    <div class="cont">
+        <div class="container">
+            <h2>Edit Post</h2>
+            <form action="/edit/<%= post.id %>" method="POST">
+                <input type="text" name="title" value="<%= post.title %>" required>
+                <textarea name="content" rows="5" required><%= post.content %></textarea>
+                <button type="submit" class="btn">Save Changes</button>
+            </form>
+            <a href="/" class="btn-small">Back to Home</a>
+        </div>
     </div>
 </body>
 </html>

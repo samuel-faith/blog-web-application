@@ -3,30 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <title>Blog Web Application</title>
 </head>
 <body>
-    <div class="container">
-        <h1> Welcome to my Blog Posts</h1>
-        <a href="/create"> New Post</a>
-
-        <% if (posts.length === 0) { %>
-            <p>No posts yet. Create one!</p>
-       <% } else{%>
-            <% posts.forEach(post => { %>
-                <div class= "post">
-                    <h2> <%= post.title%></h2>
-                    <p> <%= post.content%></p>
-                    <div class= "post-actions">
-                        <a href="/edit/<%= post.id %>" class="btn-samll">Edit</a>
-                        <form action="/delete/<%= post.id %>" method="POST">
-                            <button type="submit" value="delete" class="btn-small delete">Delete Post</button>
-                        </form>
+    <%- include("partials/header.ejs") %>
+    <div class="cont">
+        <div class="container">
+            <h1> Welcome to my Blog Posts.</h1>
+            <h2>Here are your recent posts:</h2>
+            <%# used the posts variable to display the posts on the home page%>
+            <% if (posts.length === 0) { %> <%# if no posts is created yet%>
+                <p>No posts yet. Create one!</p>
+            <% } else{%>
+                <% posts.forEach(post => { %> <%# if posts are created, go through each and display the propoerties from the create page%>
+                    <div class= "post">
+                        
+                        <small>Post <%=post.id%></small>
+                        <h3> <%= post.title%></h3>
+                        <p class="post-content"> <%= post.content%></p>
+                        <div class= "post-actions">
+                            
+                            <form class="home-form" action="/delete/<%= post.id %>" method="POST">
+                                <a href="/edit/<%= post.id %>" class="btn-samll">Edit Post</a>
+                                <button type="submit" value="delete" class="btn-small delete">Delete Post</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-          <%  }); %>
-            
-       <% } %>
+                <%  }); %>
+                
+            <% } %>
+            <a class="create-button" href="/create"> Create New Post</a>
+        </div>
     </div>
 </body>
+<%- include("partials/footer.ejs") %>
 </html>

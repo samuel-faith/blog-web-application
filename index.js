@@ -2,15 +2,18 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 const app = express();
+
 const port = 3000;
+
+app.use(express.static("public"));
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 let posts = []; // creates an array of posts
 
 let idCounter = 1; // keeps track of the id of posts
 
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended: true}));
-
+// dispays the home page and pass the 'posts' varialble to be used on the home page
 app.get("/", (req, res) => {
     res.render("home.ejs", { posts });
 })
@@ -39,6 +42,9 @@ app.post("/edit/:id", (req, res) => {
 
 app.post("/delete/:id", (req, res) => {
     posts = posts.filter(p => p.id != Number(req.params.id));
+    if (posts.length === 0) {
+        idCounter = 1;
+    }
     res.redirect("/");
 });
 
